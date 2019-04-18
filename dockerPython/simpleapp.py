@@ -10,7 +10,7 @@ start = int(round(time.time()))
 @app.route("/")
 def hello_world():
 
-    return "Hello world from Distelli & Docker!"
+    return "Hello world!"
 
 if __name__ == '__main__':
     parser = optparse.OptionParser(usage="python simpleapp.py -p ")
