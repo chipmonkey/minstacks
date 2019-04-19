@@ -102,3 +102,12 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# ignore everything in a secrets
+secrets/*
+!secrets/README.md
+
+# from: https://towardsdatascience.com/how-to-create-your-first-web-app-using-python-plotly-dash-and-google-sheets-api-7a2fe3f5d256
+*.pyc
+.DS_Store
+.env
