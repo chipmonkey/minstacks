@@ -111,3 +111,6 @@ secrets/*
 *.pyc
 .DS_Store
 .env
+
+# archives
+*.tgz

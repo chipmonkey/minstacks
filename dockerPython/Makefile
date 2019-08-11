@@ -5,7 +5,13 @@
 build: docker-build
 
 docker-build:
-	docker build -t flask-sample-one:latest .
+	docker build -t flask-sample-one:latest -f Dockerfile.alpine .
+
+docker-python:
+	docker build -t python374 -f Dockerfile.ubuntu .
+
+docker-python-bash:
+	docker run -it python374 bash
 
 clean:
 	yes | docker system prune

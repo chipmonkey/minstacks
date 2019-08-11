@@ -1,0 +1,21 @@
+[servers]
+database-servers
+nginx-servers
+app-servers
+monitoring-servers
+devops-servers
+
+[database-servers]
+postgres-db1 ansible_host=10.0.0.1 ansible_port=22 ansible_user=postgres
+
+[nginx-servers]
+nginx-1 ansible_host=10.0.0.2 ansible_port=22 ansible_user=root
+
+[app-servers]
+python-app-1 ansibe_host=10.0.0.3 ansible_port=22 ansible_user=root
+
+[monitoring-servers]
+elk-server-1
+
+[devops-servers]
+openproject-1
