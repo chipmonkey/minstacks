@@ -1,0 +1,1 @@
+grep -v ^# telegraf.conf | grep -v -e '^$' | grep -v -e '^\s*#'
