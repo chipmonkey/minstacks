@@ -1,0 +1,48 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    networks:
+      - minstacks
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword 
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - minstacks
+    ports:
+      - 8080:8080
+
+  telegraf:
+    image: telegraf
+    restart: always
+    networks:
+      - minstacks
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /proc:/rootfs/proc:ro
+
+  influxdb:
+    image: influxdb
+    restart: always
+    networks:
+      - minstacks
+    ports:
+      - 8083:8083
+      - 8086:8086
+
+  grafana:
+    image: grafana/grafana
+    restart: always
+    networks:
+      - minstacks
+    ports:
+      - 3000:3000
+
+networks:
+  minstacks:
