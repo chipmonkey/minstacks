@@ -9,6 +9,8 @@ services:
       - metastacks
     environment:
       POSTGRES_PASSWORD: mysecretpassword 
+    volumes:
+      - endurance/postgres:/var/lib/postgresql/data
 
   adminer:
     image: adminer
@@ -17,6 +19,31 @@ services:
       - metastacks
     ports:
       - 8081:8080
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    restart: always
+    networks:
+      - metastacks
+    ports:
+      - 8082:8080
+    volumes:
+      - ./endurance/jenkins:/var/jenkins_home
+
+  redmine:
+    image: bitname/redmine
+    restart: always
+    networks:
+      - metastacks
+    environment:
+      - REDMINE_DB_POSTGRES=postgresql
+      - REDMINE_DB_HOST=postgres
+      - REDMINE_DB_USERNAME=redmine
+      - REDMINE_DB_NAME=redmine
+    ports:
+      - 8083:3000
+    volumes:
+      - ./endurance/redmine:/bitnami
 
 networks:
   metastacks:
