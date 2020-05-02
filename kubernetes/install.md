@@ -24,6 +24,24 @@ curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/miniku
 install minikube /usr/local/bin/
 minikube start
 
+
 # Stuff
+# Ref: https://kubernetes.io/docs/tutorials/hello-minikube/
 # This command only works if a server exists; after minikube start
 kubectl version
+
+# More stuff
+kubectl cluster-info
+kubectl get nodes
+minikube dashboard
+kubectl get deployments
+kubectl get pods
+kubectl get events
+kubectl config view
+kubectl get services 
+
+kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
+kubectl expose deployment hello-node --type=LoadBalancer --port=8080
+
+minikube service hello-node
+

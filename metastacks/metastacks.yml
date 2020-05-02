@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_PASSWORD: mysecretpassword 
     volumes:
-      - endurance/postgres:/var/lib/postgresql/data
+      - ./endurance/postgres:/var/lib/postgresql/data
 
   adminer:
     image: adminer
@@ -44,6 +44,14 @@ services:
       - 8083:3000
     volumes:
       - ./endurance/redmine:/bitnami
+
+  gitlab:
+    image: gitlab/gitlab-ce
+    restart: always
+    metworks:
+      - metastacks
+    environment:
+      - GITLAB_HOME=./endurance/gitlab
 
 networks:
   metastacks:
