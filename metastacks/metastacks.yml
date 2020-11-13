@@ -30,28 +30,36 @@ services:
     volumes:
       - ./endurance/jenkins:/var/jenkins_home
 
-  redmine:
-    image: bitname/redmine
+#   redmine:
+#     image: bitname/redmine
+#     restart: always
+#     networks:
+#       - metastacks
+#     environment:
+#       - REDMINE_DB_POSTGRES=postgresql
+#       - REDMINE_DB_HOST=postgres
+#       - REDMINE_DB_USERNAME=redmine
+#       - REDMINE_DB_NAME=redmine
+#     ports:
+#       - 8083:3000
+#     volumes:
+#       - ./endurance/redmine:/bitnami
+
+  gitlab:
+    image: gitlab/gitlab-ce:latest
     restart: always
     networks:
       - metastacks
     environment:
-      - REDMINE_DB_POSTGRES=postgresql
-      - REDMINE_DB_HOST=postgres
-      - REDMINE_DB_USERNAME=redmine
-      - REDMINE_DB_NAME=redmine
-    ports:
-      - 8083:3000
-    volumes:
-      - ./endurance/redmine:/bitnami
-
-  gitlab:
-    image: gitlab/gitlab-ce
-    restart: always
-    metworks:
-      - metastacks
-    environment:
       - GITLAB_HOME=./endurance/gitlab
+    ports:
+      - 8084:443
+      - 8085:80
+      - "8086:22"
+    volumes:
+      - './endurance/gitlab/config:/etc/gitlab'
+      - './endurance/gitlab/logs:/var/log/gitlab'
+      - './endurance/gitlab/data:/var/opt/gitlab'
 
 networks:
   metastacks:
