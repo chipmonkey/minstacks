@@ -4,7 +4,8 @@ services:
 
   postgres:
     image: postgres
-    restart: always
+    # restart: always
+    restart: 'no'
     networks:
       - metastacks
     environment:
@@ -14,7 +15,7 @@ services:
 
   adminer:
     image: adminer
-    restart: always
+    restart: 'no'
     networks:
       - metastacks
     ports:
@@ -22,7 +23,7 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts
-    restart: always
+    restart: 'no'
     networks:
       - metastacks
     ports:
@@ -47,7 +48,7 @@ services:
 
   gitlab:
     image: gitlab/gitlab-ce:latest
-    restart: always
+    restart: 'no'
     networks:
       - metastacks
     environment:
