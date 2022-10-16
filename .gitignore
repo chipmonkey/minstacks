@@ -114,3 +114,9 @@ secrets/*
 
 # archives
 *.tgz
+
+# node
+node_modules/
+
+# Chip custom
+endurance/
